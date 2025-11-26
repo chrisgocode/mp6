@@ -1,4 +1,10 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { User } from "@/lib/types";
 import Image from "next/image";
@@ -38,7 +44,12 @@ export default async function ProfileCard({ user }: { user?: User }) {
             loading="eager" // console was complaining about setting this to eager
             className="rounded-full"
           />
-          <CardTitle>{user.username}</CardTitle>
+          <div className="flex flex-col gap-1">
+            <CardTitle>{user.username}</CardTitle>
+            <CardDescription>
+              Joined {new Date(user.created_at).toLocaleDateString()}
+            </CardDescription>
+          </div>
         </div>
       </CardHeader>
       <CardContent>
